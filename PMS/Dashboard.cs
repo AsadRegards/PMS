@@ -39,7 +39,7 @@ namespace PMS
 
         private void vIEWALLITEMSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            ShowNewFormInPanel(new ViewAllItems());
         }
 
         public static void ShowNewFormInPanel(Form newForm)

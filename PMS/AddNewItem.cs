@@ -1,26 +1,37 @@
-﻿using PMS.PMS.Data;
-using PMS.PMS.Data.Repositories;
+﻿using PMS.PMS.Data.Repositories;
 using PMS.PMS.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PMS
 {
     public partial class AddNewItem : Form
     {
         private ItemRepository _respository;
+        private static bool isEditItem = false;
+        public static int editItemId = 0;
         public AddNewItem()
         {
             InitializeComponent();
             InitializeItemTypeComboBox();
             _respository = ItemRepository.Instance;
+        }
+
+        public AddNewItem(Item item) {
+            InitializeComponent();
+            InitializeItemTypeComboBox();
+            _respository = ItemRepository.Instance;
+            PopulateItemFields(item);
+        }
+
+        private void PopulateItemFields(Item item)
+        {
+            inputItemName.Text = item.Name;
+            inputItemDescription.Text = item.Description;
+            inputItemPrice.Text = item.CurrentPricePerUnit.ToString();
+            inputItemStock.Text = item.Stock.ToString();
+            itemTypeCombo.SelectedText = item.Type;
+            isEditItem = true;
+            editItemId = item.Id;
+
         }
 
         private void InitializeItemTypeComboBox()
@@ -68,10 +79,13 @@ namespace PMS
                 LastStockedDate = DateTime.Now
 
             };
-            if (_respository.SaveItem(item))
+            if (_respository.SaveItem(item,isEditItem,editItemId))
             {
-                MessageBox.Show("Item added Successfully");
-                Dashboard.ShowNewFormInPanel(new AddNewItem());
+                MessageBox.Show($"Item Saved Successfully");
+                isEditItem = false;
+                editItemId = 0;
+                Dashboard.ShowNewFormInPanel(new ViewAllItems());
+                this.Hide();
             }
             else
                 MessageBox.Show("Unable to add Item at this time");
