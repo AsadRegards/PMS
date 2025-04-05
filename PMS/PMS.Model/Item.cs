@@ -9,6 +9,11 @@
         public int Stock {  get; set; } 
         public DateTime LastStockedDate { get; set; }   
         public int CurrentPricePerUnit { get;set; }
+
+        public override string ToString()
+        {
+            return $"{Id}|{Name}|{Description}|{CurrentPricePerUnit}|{Stock}|{LastStockedDate.ToShortDateString()}";
+        }
     }
 }
 
