@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace PMS
 {
+    //panel size: 1517, 826
     public partial class Dashboard : Form
     {
         public Dashboard()
