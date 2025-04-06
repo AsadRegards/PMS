@@ -14,7 +14,7 @@ namespace PMS
 {
     public partial class Login : Form
     {
-        private UserRepository _userRepository;    
+        private UserRepository _userRepository;
         public Login()
         {
             _userRepository = UserRepository.Instance;
@@ -32,8 +32,10 @@ namespace PMS
             {
                 MessageBox.Show("User Not Found!");
             }
-            else {
-                if (user.Password != this.inputPasword.Text) {
+            else
+            {
+                if (user.Password != this.inputPasword.Text)
+                {
                     MessageBox.Show("Invalid Password!!");
                 }
                 else
@@ -48,7 +50,8 @@ namespace PMS
 
         private bool validateLoginNameandPassword(string userName, string Password)
         {
-            if (string.IsNullOrWhiteSpace(userName)) {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
                 MessageBox.Show("Please Enter Valid LoginName");
                 return false;
             }
@@ -63,7 +66,12 @@ namespace PMS
         private void SignupLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new Signup().Show();
-            this.Hide();   
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
