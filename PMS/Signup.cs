@@ -34,7 +34,8 @@ namespace PMS
                 LoginName = inputLoginName.Text,
                 Password = inputPassword.Text
             };
-            if (_userRepository.GetUserByLoginName(user.LoginName) != null) {
+            if (_userRepository.GetUserByLoginName(user.LoginName) != null)
+            {
                 MessageBox.Show("UserName already exists, Please try another username");
             }
             else
@@ -43,7 +44,7 @@ namespace PMS
                 MessageBox.Show(Message);
                 new Login().Show();
                 this.Hide();
-               
+
             }
         }
 
@@ -64,7 +65,7 @@ namespace PMS
             }
 
             // Validate phone number format (simple example: should contain only digits and have a length of 10)
-            if (!phoneNumber.All(char.IsDigit) || phoneNumber.Length <11)
+            if (!phoneNumber.All(char.IsDigit) || phoneNumber.Length < 11)
             {
                 MessageBox.Show("Please enter valid 11 digits Phone No.");
                 return false; // Stop further processing
@@ -91,6 +92,11 @@ namespace PMS
         private void loginLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new Login().Show();
+            this.Close();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }
