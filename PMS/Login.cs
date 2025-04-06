@@ -15,7 +15,7 @@ namespace PMS
 {
     public partial class Login : Form
     {
-        private UserRepository _userRepository;    
+        private UserRepository _userRepository;
         public Login()
         {
             _userRepository = UserRepository.Instance;
@@ -64,7 +64,12 @@ namespace PMS
         private void SignupLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new Signup().Show();
-            this.Hide();   
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
