@@ -46,15 +46,19 @@ namespace PMS
         public static void ShowNewFormInPanel(Form newForm)
         {
 
-            mainPanel.Controls.Clear();  
+            mainPanel.Controls.Clear();
 
-            newForm.TopLevel = false;  
-            newForm.FormBorderStyle = FormBorderStyle.None;  
-            newForm.Dock = DockStyle.Fill;  
-            mainPanel.Controls.Add(newForm);  
+            newForm.TopLevel = false;
+            newForm.FormBorderStyle = FormBorderStyle.None;
+            newForm.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(newForm);
 
             newForm.Show();
         }
 
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
