@@ -75,8 +75,7 @@ namespace PMS
                 Description = inputItemDescription.Text,
                 CurrentPricePerUnit = Convert.ToInt32(inputItemPrice.Text),
                 Stock = Convert.ToInt32(inputItemStock.Text),
-                Type = itemTypeCombo.SelectedText,
-                LastStockedDate = DateTime.Now
+                Type = itemTypeCombo.SelectedText
 
             };
             if (_respository.SaveItem(item,isEditItem,editItemId))
