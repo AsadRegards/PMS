@@ -17,6 +17,7 @@ namespace PMS.PMS.Data
         public DbSet<SaleItems> SaleItems { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<ChangeLog> ChangeLog { get; set; } 
 
         // Private constructor to prevent external instantiation
         private PmsDbContext(DbContextOptions<PmsDbContext> options) : base(options)
@@ -24,6 +25,7 @@ namespace PMS.PMS.Data
             Database.EnsureCreated();
         }
 
+        //Public Constructor created in order for entity framework to successfully performs migrations. [[DO NOT REMOVE THIS CONSTRUCTOR]]
         public PmsDbContext() : base(new DbContextOptions<PmsDbContext>())
         {
 

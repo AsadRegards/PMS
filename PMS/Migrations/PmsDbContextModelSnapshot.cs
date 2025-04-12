@@ -17,6 +17,45 @@ namespace PMS.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
 
+            modelBuilder.Entity("PMS.PMS.Model.ChangeLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ChangeType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NewValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ObjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ObjectType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("OldValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PropertyChanged")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChangeLog");
+                });
+
             modelBuilder.Entity("PMS.PMS.Model.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -28,9 +67,6 @@ namespace PMS.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastStockedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

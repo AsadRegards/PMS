@@ -17,4 +17,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="pharmacy.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
