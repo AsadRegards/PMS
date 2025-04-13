@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using PMS.PMS.Model;
 using System;
 
@@ -14,7 +15,7 @@ namespace PMS.PMS.Data
 
         // Public DbSet properties
         public DbSet<Sale> Sales { get; set; }
-        public DbSet<SaleItems> SaleItems { get; set; }
+        public DbSet<SaleItem> SaleItems { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ChangeLog> ChangeLog { get; set; } 
@@ -43,10 +44,11 @@ namespace PMS.PMS.Data
                     {
                         if (_instance == null)
                         {
+                            var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "pharmacy.db");
                             // Create an options object (you can replace this with your actual options setup)
                             var options = new DbContextOptionsBuilder<PmsDbContext>()
-                                          .UseSqlite("Data Source=pharmacy.db")
-                                          .Options;
+                                            .UseSqlite($"Data Source={dbPath}")
+                                            .Options;
                             _instance = new PmsDbContext(options);
                         }
                     }
@@ -59,7 +61,8 @@ namespace PMS.PMS.Data
         // If you still want the flexibility to configure options dynamically, keep this
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source=pharmacy.db");
+            var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "pharmacy.db");
+            options.UseSqlite($"Data Source={dbPath}");
         }
     }
 }

@@ -75,7 +75,8 @@ namespace PMS.PMS.Data.Repositories
 
                 };
                 var isSuccess = _dbContext.SaveChanges() > 0;
-                if(isSuccess)
+                if (isSuccess)
+                    log.ObjectId = item.Id;
                     AddChangeLog(log);
                 return isSuccess;
             }
@@ -143,9 +144,18 @@ namespace PMS.PMS.Data.Repositories
             return item;
         }
 
-        public List<Item> GetAllItems(string itemNameFilter = "", int StockLessThanFilter = 0)
+        public List<Item> GetAllItems(string itemNameFilter = "", int StockLessThanFilter = 0, bool useCache= true)
         {
-            var list = _dbContext.Items.ToList();
+            var list = new List<Item>();
+            if (!useCache)
+            {
+                list = _dbContext.Items.AsNoTracking().ToList();
+            }
+            else
+            {
+                list = _dbContext.Items.ToList();
+            }
+            
             if (!string.IsNullOrWhiteSpace(itemNameFilter))
             {
                 list = list.Where(x=>x.Name.ToLower().Contains(itemNameFilter.ToLower())).ToList();
