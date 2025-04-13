@@ -187,8 +187,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(246, 246, 246);
-            ClientSize = new Size(958, 473);
+            BackColor = Color.White;
+            ClientSize = new Size(969, 460);
             Controls.Add(addNewItemBtn);
             Controls.Add(label7);
             Controls.Add(itemTypeCombo);
