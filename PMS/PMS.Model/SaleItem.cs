@@ -1,6 +1,6 @@
 ﻿namespace PMS.PMS.Model
 {
-    public class SaleItems
+    public class SaleItem
     {
         public int Id { get; set; } 
         public int SaleId { get; set; } 

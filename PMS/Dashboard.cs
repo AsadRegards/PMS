@@ -25,7 +25,7 @@ namespace PMS
 
         private void aDDNEWSALEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowNewFormInPanel(new AddSaleItem());
         }
 
         private void aDDNEWITEMToolStripMenuItem_Click(object sender, EventArgs e)

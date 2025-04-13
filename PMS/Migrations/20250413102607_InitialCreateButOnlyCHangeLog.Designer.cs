@@ -11,8 +11,8 @@ using PMS.PMS.Data;
 namespace PMS.Migrations
 {
     [DbContext(typeof(PmsDbContext))]
-    [Migration("20250412100927_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250413102607_InitialCreateButOnlyCHangeLog")]
+    partial class InitialCreateButOnlyCHangeLog
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,6 @@ namespace PMS.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("NewValue")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ObjectId")
@@ -40,11 +39,9 @@ namespace PMS.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("OldValue")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PropertyChanged")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TimeStamp")
@@ -117,7 +114,7 @@ namespace PMS.Migrations
                     b.ToTable("Sales");
                 });
 
-            modelBuilder.Entity("PMS.PMS.Model.SaleItems", b =>
+            modelBuilder.Entity("PMS.PMS.Model.SaleItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,7 +169,7 @@ namespace PMS.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PMS.PMS.Model.SaleItems", b =>
+            modelBuilder.Entity("PMS.PMS.Model.SaleItem", b =>
                 {
                     b.HasOne("PMS.PMS.Model.Sale", null)
                         .WithMany("SaleItems")
