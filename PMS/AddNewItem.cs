@@ -1,5 +1,6 @@
 ﻿using PMS.PMS.Data.Repositories;
 using PMS.PMS.Model;
+using MessageBox = PMS.Toast.MessageBox;
 
 namespace PMS
 {
@@ -80,31 +81,31 @@ namespace PMS
             };
             if (_respository.SaveItem(item,isEditItem,editItemId))
             {
-                MessageBox.Show($"Item Saved Successfully");
+                MessageBox.ShowSuccessMessage(this,$"Item Saved Successfully");
                 isEditItem = false;
                 editItemId = 0;
                 Dashboard.ShowNewFormInPanel(new ViewAllItems());
                 this.Hide();
             }
             else
-                MessageBox.Show("Unable to add Item at this time");
+                MessageBox.ShowErrorMessage(this,"Unable to add Item at this time");
         }
 
         private bool ValidateNewItem(string itemName, string itemPrice, string itemStock)
         {
             if (string.IsNullOrWhiteSpace(itemName))
             {
-                MessageBox.Show("Please enter Valid Item Name");
+                MessageBox.ShowWarningMessage(this,"Please enter Valid Item Name");
                 return false;
             }
             if (string.IsNullOrWhiteSpace(itemPrice) || !int.TryParse(itemPrice,out _))
             {
-                MessageBox.Show("Please enter Valid Item Price");
+                MessageBox.ShowWarningMessage(this,"Please enter Valid Item Price");
                 return false;
             }
             if (string.IsNullOrWhiteSpace(itemStock) || !int.TryParse(itemStock, out _))
             {
-                MessageBox.Show("Please enter Valid # of Item Stock");
+                MessageBox.ShowWarningMessage(this,"Please enter Valid # of Item Stock");
                 return false;
             }
             return true;

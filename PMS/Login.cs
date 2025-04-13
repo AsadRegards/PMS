@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MessageBox = PMS.Toast.MessageBox;
 
 namespace PMS
 {
@@ -30,11 +31,11 @@ namespace PMS
             User user = _userRepository.GetUserByLoginName(this.inputLoginName.Text);
             if (user == null)
             {
-                MessageBox.Show("User Not Found!");
+                MessageBox.ShowErrorMessage(this,"User Not Found!");
             }
             else {
                 if (user.Password != this.inputPasword.Text) {
-                    MessageBox.Show("Invalid Password!!");
+                    MessageBox.ShowErrorMessage(this,"Invalid Password!!");
                 }
                 else
                 {
@@ -49,12 +50,12 @@ namespace PMS
         private bool validateLoginNameandPassword(string userName, string Password)
         {
             if (string.IsNullOrWhiteSpace(userName)) {
-                MessageBox.Show("Please Enter Valid LoginName");
+                MessageBox.ShowErrorMessage(this,"Please Enter Valid LoginName");
                 return false;
             }
             if (string.IsNullOrWhiteSpace(Password))
             {
-                MessageBox.Show("Please Enter Valid Password");
+                MessageBox.ShowErrorMessage(this,"Please Enter Valid Password");
                 return false;
             }
             return true;
