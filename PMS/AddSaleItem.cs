@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MessageBox = PMS.Toast.MessageBox;
 
 namespace PMS
 {
@@ -36,7 +37,7 @@ namespace PMS
             if (e.ColumnIndex == 5) //Delete Button
             {
                 saleItemGridView.Rows.RemoveAt(e.RowIndex);
-                MessageBox.Show("Item Deleted From Sale");
+                MessageBox.ShowSuccessMessage(this,"Item Deleted From Sale");
                 updateTotalPrice();
             }
 
@@ -56,13 +57,13 @@ namespace PMS
                 {
                     saleItemGridView.Rows[e.RowIndex].Cells[1].Value = 1;
                     saleItemGridView.Rows[e.RowIndex].Cells[4].Value = saleItemGridView.Rows[e.RowIndex].Cells[2].Value;
-                    MessageBox.Show("Please enter correct value for Quantity");
+                    MessageBox.ShowWarningMessage(this,"Please enter correct value for Quantity");
                 }
                 else if(newQuantity > availableQuantity)
                 {
                     saleItemGridView.Rows[e.RowIndex].Cells[1].Value = 1;
                     saleItemGridView.Rows[e.RowIndex].Cells[4].Value = saleItemGridView.Rows[e.RowIndex].Cells[2].Value;
-                    MessageBox.Show($"{ItemName} are only {availableQuantity} left in stock");
+                    MessageBox.ShowWarningMessage(this,$"{ItemName} are only {availableQuantity} left in stock");
                 }
                 else
                 {
@@ -161,7 +162,7 @@ namespace PMS
                 }
                 else
                 {
-                    MessageBox.Show($"Item {itemToAdd.Name} is out of stock, Please ReStock");
+                    MessageBox.ShowErrorMessage(this,$"Item {itemToAdd.Name} is out of stock, Please ReStock");
                 }
                 updateTotalPrice();
                 filterItemList.Text = "";
@@ -194,7 +195,7 @@ namespace PMS
             {
                 if (sender != null && discountFlag.Checked)
                 {
-                    MessageBox.Show("Please Enter Correct Discount Value");
+                    MessageBox.ShowWarningMessage(this,"Please Enter Correct Discount Value");
                 }
             }
 
@@ -216,7 +217,7 @@ namespace PMS
         {
             var errorMessage = ValidateSale();
             if (!string.IsNullOrEmpty(errorMessage)) { 
-                MessageBox.Show(errorMessage);
+                MessageBox.ShowWarningMessage(this,errorMessage);
                 return;
             }
             int totalSalePrice = 0;
@@ -241,7 +242,7 @@ namespace PMS
             sale.DiscountType = discountType;
             sale.Amount = totalSalePrice - discountAmount;
             _saleRepository.SaveSale(sale);
-            MessageBox.Show("Sale Added succesfully");
+            MessageBox.ShowSuccessMessage(this,"Sale Added succesfully");
             Dashboard.ShowNewFormInPanel(new ViewAllItems());
             
             

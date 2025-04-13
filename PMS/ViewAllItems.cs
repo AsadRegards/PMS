@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MessageBox = PMS.Toast.MessageBox;
 
 namespace PMS
 {
@@ -57,14 +58,19 @@ namespace PMS
             int _itemId;
             if (!int.TryParse(itemId?.ToString(), out _itemId))
             {
-                MessageBox.Show("Unable to Edit this Item");
+                MessageBox.ShowErrorMessage(this,"Unable to Edit this Item");
                 return;
             }
             else
             {
                 var IsDeleted = _repository.DeleteItemById(_itemId);
                 var Message = IsDeleted ? "Item Deleted" : "Unable to delete Item";
-                MessageBox.Show(Message);
+                if (IsDeleted)
+                { MessageBox.ShowSuccessMessage(this,Message); }
+                else
+                {
+                    MessageBox.ShowErrorMessage(this,Message);
+                }
                 PopulateDataGridView(ItemNameFilter,StockLessThanFilter);
             }
         }
@@ -74,7 +80,7 @@ namespace PMS
             int _itemId;
             if (!int.TryParse(itemId?.ToString(), out _itemId))
             {
-                MessageBox.Show("Unable to Edit this Item");
+                MessageBox.ShowErrorMessage(this,"Unable to Edit this Item");
                 return;
             }
             else
