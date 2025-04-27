@@ -30,6 +30,12 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             saleItemGridView = new DataGridView();
+            Item = new DataGridViewTextBoxColumn();
+            Quantity = new DataGridViewTextBoxColumn();
+            UnitPrice = new DataGridViewTextBoxColumn();
+            availableQuantity = new DataGridViewTextBoxColumn();
+            totalPrice = new DataGridViewTextBoxColumn();
+            delete = new DataGridViewButtonColumn();
             label2 = new Label();
             fixedDiscount = new RadioButton();
             percentDiscount = new RadioButton();
@@ -45,26 +51,84 @@
             label6 = new Label();
             currentUser = new Label();
             currentDateTime = new Label();
-            Item = new DataGridViewTextBoxColumn();
-            Quantity = new DataGridViewTextBoxColumn();
-            UnitPrice = new DataGridViewTextBoxColumn();
-            availableQuantity = new DataGridViewTextBoxColumn();
-            totalPrice = new DataGridViewTextBoxColumn();
-            delete = new DataGridViewButtonColumn();
+            discountPanel = new Panel();
+            returnPanel = new Panel();
+            returnAmountLabel = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label7 = new Label();
+            customerToPayLabel = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)saleItemGridView).BeginInit();
+            discountPanel.SuspendLayout();
+            returnPanel.SuspendLayout();
             SuspendLayout();
             // 
             // saleItemGridView
             // 
             saleItemGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             saleItemGridView.Columns.AddRange(new DataGridViewColumn[] { Item, Quantity, UnitPrice, availableQuantity, totalPrice, delete });
-            saleItemGridView.Location = new Point(12, 155);
+            saleItemGridView.Location = new Point(21, 155);
             saleItemGridView.Name = "saleItemGridView";
             saleItemGridView.RowHeadersWidth = 51;
             saleItemGridView.Size = new Size(1103, 612);
             saleItemGridView.TabIndex = 0;
             saleItemGridView.CellContentClick += saleItemGridView_CellContentClick;
             saleItemGridView.CellValueChanged += saleItemGridView_CellValueChanged;
+            // 
+            // Item
+            // 
+            Item.HeaderText = "Item Name";
+            Item.MinimumWidth = 6;
+            Item.Name = "Item";
+            Item.ReadOnly = true;
+            Item.Width = 550;
+            // 
+            // Quantity
+            // 
+            Quantity.HeaderText = "Quantity";
+            Quantity.MinimumWidth = 6;
+            Quantity.Name = "Quantity";
+            Quantity.Width = 125;
+            // 
+            // UnitPrice
+            // 
+            UnitPrice.HeaderText = "Unit Price";
+            UnitPrice.MinimumWidth = 6;
+            UnitPrice.Name = "UnitPrice";
+            UnitPrice.ReadOnly = true;
+            UnitPrice.Width = 125;
+            // 
+            // availableQuantity
+            // 
+            availableQuantity.HeaderText = "Available Quantity";
+            availableQuantity.MinimumWidth = 6;
+            availableQuantity.Name = "availableQuantity";
+            availableQuantity.ReadOnly = true;
+            availableQuantity.Visible = false;
+            availableQuantity.Width = 125;
+            // 
+            // totalPrice
+            // 
+            totalPrice.HeaderText = "Total Price";
+            totalPrice.MinimumWidth = 6;
+            totalPrice.Name = "totalPrice";
+            totalPrice.ReadOnly = true;
+            totalPrice.Width = 125;
+            // 
+            // delete
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 128, 128);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            delete.DefaultCellStyle = dataGridViewCellStyle1;
+            delete.FlatStyle = FlatStyle.Popup;
+            delete.HeaderText = "";
+            delete.MinimumWidth = 6;
+            delete.Name = "delete";
+            delete.Text = "Delete";
+            delete.UseColumnTextForButtonValue = true;
+            delete.Width = 125;
             // 
             // label2
             // 
@@ -79,7 +143,7 @@
             // fixedDiscount
             // 
             fixedDiscount.AutoSize = true;
-            fixedDiscount.Location = new Point(1139, 401);
+            fixedDiscount.Location = new Point(89, 123);
             fixedDiscount.Name = "fixedDiscount";
             fixedDiscount.Size = new Size(127, 24);
             fixedDiscount.TabIndex = 12;
@@ -91,7 +155,7 @@
             // percentDiscount
             // 
             percentDiscount.AutoSize = true;
-            percentDiscount.Location = new Point(1300, 401);
+            percentDiscount.Location = new Point(70, 153);
             percentDiscount.Name = "percentDiscount";
             percentDiscount.Size = new Size(165, 24);
             percentDiscount.TabIndex = 13;
@@ -104,7 +168,7 @@
             // 
             discountFlag.AutoSize = true;
             discountFlag.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            discountFlag.Location = new Point(1201, 341);
+            discountFlag.Location = new Point(60, 60);
             discountFlag.Name = "discountFlag";
             discountFlag.Size = new Size(185, 35);
             discountFlag.TabIndex = 14;
@@ -114,7 +178,7 @@
             // 
             // discountValue
             // 
-            discountValue.Location = new Point(1240, 467);
+            discountValue.Location = new Point(47, 237);
             discountValue.Name = "discountValue";
             discountValue.Size = new Size(210, 27);
             discountValue.TabIndex = 15;
@@ -124,7 +188,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1147, 469);
+            label3.Location = new Point(109, 191);
             label3.Name = "label3";
             label3.Size = new Size(87, 25);
             label3.TabIndex = 17;
@@ -134,7 +198,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1201, 580);
+            label1.Location = new Point(1201, 610);
             label1.Name = "label1";
             label1.Size = new Size(207, 37);
             label1.TabIndex = 18;
@@ -145,7 +209,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Blue;
-            label4.Location = new Point(1240, 646);
+            label4.Location = new Point(1240, 676);
             label4.Name = "label4";
             label4.Size = new Size(55, 37);
             label4.TabIndex = 19;
@@ -156,7 +220,7 @@
             totalAmountLabel.AutoSize = true;
             totalAmountLabel.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             totalAmountLabel.ForeColor = Color.Blue;
-            totalAmountLabel.Location = new Point(1291, 646);
+            totalAmountLabel.Location = new Point(1291, 676);
             totalAmountLabel.Name = "totalAmountLabel";
             totalAmountLabel.Size = new Size(34, 37);
             totalAmountLabel.TabIndex = 20;
@@ -225,65 +289,102 @@
             currentDateTime.TabIndex = 26;
             currentDateTime.Text = "[[Date Time]]";
             // 
-            // Item
+            // discountPanel
             // 
-            Item.HeaderText = "Item Name";
-            Item.MinimumWidth = 6;
-            Item.Name = "Item";
-            Item.ReadOnly = true;
-            Item.Width = 550;
+            discountPanel.Controls.Add(discountFlag);
+            discountPanel.Controls.Add(fixedDiscount);
+            discountPanel.Controls.Add(percentDiscount);
+            discountPanel.Controls.Add(discountValue);
+            discountPanel.Controls.Add(label3);
+            discountPanel.Location = new Point(1141, 196);
+            discountPanel.Name = "discountPanel";
+            discountPanel.Size = new Size(310, 345);
+            discountPanel.TabIndex = 27;
             // 
-            // Quantity
+            // returnPanel
             // 
-            Quantity.HeaderText = "Quantity";
-            Quantity.MinimumWidth = 6;
-            Quantity.Name = "Quantity";
-            Quantity.Width = 125;
+            returnPanel.Controls.Add(label7);
+            returnPanel.Controls.Add(customerToPayLabel);
+            returnPanel.Controls.Add(label11);
+            returnPanel.Controls.Add(label8);
+            returnPanel.Controls.Add(returnAmountLabel);
+            returnPanel.Controls.Add(label9);
+            returnPanel.Location = new Point(1141, 196);
+            returnPanel.Name = "returnPanel";
+            returnPanel.Size = new Size(310, 345);
+            returnPanel.TabIndex = 28;
             // 
-            // UnitPrice
+            // returnAmountLabel
             // 
-            UnitPrice.HeaderText = "Unit Price";
-            UnitPrice.MinimumWidth = 6;
-            UnitPrice.Name = "UnitPrice";
-            UnitPrice.ReadOnly = true;
-            UnitPrice.Width = 125;
+            returnAmountLabel.AutoSize = true;
+            returnAmountLabel.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            returnAmountLabel.ForeColor = Color.Blue;
+            returnAmountLabel.Location = new Point(168, 102);
+            returnAmountLabel.Name = "returnAmountLabel";
+            returnAmountLabel.Size = new Size(34, 37);
+            returnAmountLabel.TabIndex = 31;
+            returnAmountLabel.Text = "0";
             // 
-            // availableQuantity
+            // label8
             // 
-            availableQuantity.HeaderText = "Available Quantity";
-            availableQuantity.MinimumWidth = 6;
-            availableQuantity.Name = "availableQuantity";
-            availableQuantity.ReadOnly = true;
-            availableQuantity.Visible = false;
-            availableQuantity.Width = 125;
+            label8.AutoSize = true;
+            label8.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Blue;
+            label8.Location = new Point(107, 102);
+            label8.Name = "label8";
+            label8.Size = new Size(55, 37);
+            label8.TabIndex = 30;
+            label8.Text = "Rs.";
             // 
-            // totalPrice
+            // label9
             // 
-            totalPrice.HeaderText = "Total Price";
-            totalPrice.MinimumWidth = 6;
-            totalPrice.Name = "totalPrice";
-            totalPrice.ReadOnly = true;
-            totalPrice.Width = 125;
+            label9.AutoSize = true;
+            label9.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(46, 48);
+            label9.Name = "label9";
+            label9.Size = new Size(230, 37);
+            label9.TabIndex = 29;
+            label9.Text = "Return Amount";
             // 
-            // delete
+            // label7
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 128, 128);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            delete.DefaultCellStyle = dataGridViewCellStyle1;
-            delete.FlatStyle = FlatStyle.Popup;
-            delete.HeaderText = "";
-            delete.MinimumWidth = 6;
-            delete.Name = "delete";
-            delete.Text = "Delete";
-            delete.UseColumnTextForButtonValue = true;
-            delete.Width = 125;
+            label7.AutoSize = true;
+            label7.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Blue;
+            label7.Location = new Point(107, 247);
+            label7.Name = "label7";
+            label7.Size = new Size(55, 37);
+            label7.TabIndex = 33;
+            label7.Text = "Rs.";
+            // 
+            // customerToPayLabel
+            // 
+            customerToPayLabel.AutoSize = true;
+            customerToPayLabel.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            customerToPayLabel.ForeColor = Color.Blue;
+            customerToPayLabel.Location = new Point(168, 247);
+            customerToPayLabel.Name = "customerToPayLabel";
+            customerToPayLabel.Size = new Size(34, 37);
+            customerToPayLabel.TabIndex = 34;
+            customerToPayLabel.Text = "0";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(32, 190);
+            label11.Name = "label11";
+            label11.Size = new Size(258, 37);
+            label11.TabIndex = 32;
+            label11.Text = "Customer To Pay";
             // 
             // AddSaleItem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1499, 779);
+            Controls.Add(returnPanel);
+            Controls.Add(discountPanel);
             Controls.Add(currentDateTime);
             Controls.Add(currentUser);
             Controls.Add(label6);
@@ -293,17 +394,16 @@
             Controls.Add(totalAmountLabel);
             Controls.Add(label4);
             Controls.Add(label1);
-            Controls.Add(label3);
-            Controls.Add(discountValue);
-            Controls.Add(discountFlag);
-            Controls.Add(percentDiscount);
-            Controls.Add(fixedDiscount);
             Controls.Add(label2);
             Controls.Add(saleItemGridView);
             Name = "AddSaleItem";
             Text = "AddSaleItem";
             Load += AddSaleItem_Load;
             ((System.ComponentModel.ISupportInitialize)saleItemGridView).EndInit();
+            discountPanel.ResumeLayout(false);
+            discountPanel.PerformLayout();
+            returnPanel.ResumeLayout(false);
+            returnPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -332,5 +432,13 @@
         private DataGridViewTextBoxColumn availableQuantity;
         private DataGridViewTextBoxColumn totalPrice;
         private DataGridViewButtonColumn delete;
+        private Panel discountPanel;
+        private Panel returnPanel;
+        private Label returnAmountLabel;
+        private Label label8;
+        private Label label9;
+        private Label label7;
+        private Label customerToPayLabel;
+        private Label label11;
     }
 }

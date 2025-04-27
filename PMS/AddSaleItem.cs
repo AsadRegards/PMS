@@ -20,13 +20,25 @@ namespace PMS
         private UserRepository _userRepository;
         private SaleRepository _saleRepository;
         List<Item> ItemList = new();
-        public AddSaleItem()
+        int returnAmount;
+        public AddSaleItem(int returnAmount = 0)
         {
             InitializeComponent();
             saleItems = new List<SaleItem>();
             _repository = ItemRepository.Instance;
             _userRepository = UserRepository.Instance;
             _saleRepository = SaleRepository.Instance;
+            this.returnAmount = returnAmount;
+            if (returnAmount > 0) { 
+                discountPanel.Hide();   
+                returnPanel.Show();
+                returnAmountLabel.Text = returnAmount.ToString();
+            }
+            else
+            {
+                returnPanel.Hide();
+                discountPanel.Show();
+            }
         }
 
         private void saleItemGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +96,7 @@ namespace PMS
                 totalSalePrice += Convert.ToInt32(row?.Cells[4]?.Value);
             }
             totalAmountLabel.Text = (totalSalePrice - discountAmount).ToString();
+            customerToPayLabel.Text = (totalSalePrice - returnAmount).ToString();
         }
 
         private void discountFlag_CheckedChanged(object sender, EventArgs e)

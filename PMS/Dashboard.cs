@@ -20,7 +20,7 @@ namespace PMS
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void aDDNEWSALEToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace PMS
 
         private void vIEWALLSALESToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowNewFormInPanel(new ViewAllSales());
         }
 
         private void vIEWALLITEMSToolStripMenuItem_Click(object sender, EventArgs e)
